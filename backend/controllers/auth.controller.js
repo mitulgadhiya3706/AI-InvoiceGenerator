@@ -7,7 +7,7 @@ const generateToken = (id) => {
     });
 }
 
-registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
     const {name, email, password} = req.body;
 
     try{
@@ -39,7 +39,7 @@ registerUser = async (req, res) => {
     }     
 }
 
-loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
     const {email, password} = req.body;
 
     try{
@@ -62,7 +62,7 @@ loginUser = async (req, res) => {
     }
 }
 
-getMe = async (req, res) => {
+const getMe = async (req, res) => {
     try{
         const user = await User.findById(req.user._id);
         if(user){
@@ -83,7 +83,7 @@ getMe = async (req, res) => {
     }
 }
 
-updateUserProfile = async (req, res) => {
+const updateUserProfile = async (req, res) => {
 
 
     try{
