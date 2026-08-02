@@ -44,12 +44,12 @@ const loginUser = async (req, res) => {
 
     try{
         const user = await User.findOne({email}).select("+password");
-        if(user && await user.matchpassword(password)){
+        if(user && await user.comparePassword(password)){
             res.json({
                 _id:user._id,
                 name:user.name,
                 email:user.email,
-                token:generatetoken(user._id),
+                token:generateToken(user._id),
 
                 businessName:user.businessName,
                 address:user.address || "",
@@ -84,7 +84,6 @@ const getMe = async (req, res) => {
 }
 
 const updateUserProfile = async (req, res) => {
-
 
     try{
         const user = await User.findById(req.user._id);

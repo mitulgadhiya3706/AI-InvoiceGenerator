@@ -1,0 +1,17 @@
+const express = require("express");
+
+const {createInvoice, getInvoice, getInvoiceById, updateInvoice, deleteInvoice} = require("../controllers/invoice.controller");
+
+const protect = require("../middlewares/auth.middleware");
+const router = express.Router();
+
+router.route("/")
+    .post(protect, createInvoice)
+    .get(protect, getInvoice);
+
+router.route("/:id")
+    .get(protect, getInvoiceById)
+    .put(protect, updateInvoice)
+    .delete(protect, deleteInvoice);
+
+module.exports = router;

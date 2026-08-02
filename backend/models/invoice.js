@@ -34,7 +34,10 @@ const invoiceSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
-    duedate:{
+    invoiceDate:{
+        type: Date,  
+    },
+    dueDate:{
         type:Date
     },
     billFrom:{

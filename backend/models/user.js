@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
 
-const userSchema = new mongooose.Schema({
+const userSchema = new mongoose.Schema({
      name: {
         type: String,
         required: true,
@@ -27,8 +27,10 @@ const userSchema = new mongooose.Schema({
         default: "",
     },
     phone: {
-        type: String,
+        type: Number,
         default: "",
+        minlength: 10,
+        maxLength: 10,
     }, 
 }, { timestamps: true } 
 );
@@ -36,12 +38,12 @@ const userSchema = new mongooose.Schema({
 // Hash password before saving, only if it was modified
 userSchema.pre("save", async function(){
     if(!this.isModified("password")) return;
-    const salt = await bcrypt.getSalt(10);
-    this.password = await bcrytpt.hash(this.passsword, salt);
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
 })
 
 userSchema.methods.comparePassword = async function(enteredPassword){
-    return await bcrypt.compare(enteredPassword, this.passsword);
+    return await bcrypt.compare(enteredPassword, this.password);
 }
 
 module.exports = mongoose.model("User", userSchema);

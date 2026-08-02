@@ -145,7 +145,6 @@ ${dataSummary}
 
     } catch(err){
         console.error("Error in summary", err);
-        console.error("Error in summary", err);
         res.status(500).json({ message: "Server error" });
     }
 };
