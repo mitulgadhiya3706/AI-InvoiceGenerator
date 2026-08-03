@@ -7,7 +7,7 @@ const connectDB = require('./config/database');
 const { METHODS } = require("http");
 
 const authRoutes = require("./routes/auth.routes");
-// const aiRoutes = require("./routes/ai.routes");
+const aiRoutes = require("./routes/ai.routes");
 const invoiceRoutes = require("./routes/invoice.routes");
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.json());
 
 app.use(authRoutes);
 app.use("/api/auth", authRoutes);
-// app.use("/api/ai", aiRoutes);
+app.use("/api/ai", aiRoutes);
 app.use("/api/invoice", invoiceRoutes);
 
 const PORT = process.env.PORT || 5000;

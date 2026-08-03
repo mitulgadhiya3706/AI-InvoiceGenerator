@@ -1,15 +1,14 @@
-// const express = require("express");
-// const protect = require("../middlewares/auth.middleware");
-// const {
-//   parseInvoiceFromText,
-//   generateRemainderEmail,
-//   getDashboardSummary,
-// } = require("../controllers/ai.controller");
+const express= require("express");
 
-// const router = express.Router();
+const { parseInvoiceFromText, generateRemainderEmail, getDashboardSummary } = require("../controllers/ai.controller");
 
-// router.post("/parse", protect, parseInvoiceFromText);
-// router.post("/email-reminder", protect, generateRemainderEmail);
-// router.get("/dashboard-summary", protect, getDashboardSummary);
+const protect = require("../middlewares/auth.middleware");
+const router = express.Router();
 
-// module.exports = router;
+
+
+router.post("/parse-text", protect, parseInvoiceFromText);
+router.post("/generate-remainder", protect, generateRemainderEmail);
+router.post("/dashboard-summary", protect, getDashboardSummary);
+
+module.exports = router;

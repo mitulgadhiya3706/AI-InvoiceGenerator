@@ -1,4 +1,6 @@
 const { GoogleGenAI } = require("@google/genai");
+const Invoice = require("../models/invoice");
+
 
 const ai = new GoogleGenAI({ 
     apiKey: process.env.GEMINI_API_KEY 
@@ -37,13 +39,13 @@ ${text}
 `;
 
         const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
+            model: "gemini-3.5-flash-lite",
             contents: prompt,
         });
         
         let responseText = response.text;
 
-        const cleanedData = responseText
+        const cleanedJson = responseText
             .replace(/```json/g, "")
             .replace(/```/g, "")
             .trim();
@@ -52,7 +54,7 @@ ${text}
         res.status(200).json(parsedData);
 
     } catch(err){
-         console.error("Error in parsing invoice with AI", err);
+        console.error("Error in parsing invoice with AI", err);
         res.status(500).json({ message: "Server error" });
     }
 }
@@ -65,7 +67,7 @@ const generateRemainderEmail = async (req, res) => {
     }
 
     try{
-        const invoice = await Invoice.findByid(invoiceId);
+        const invoice = await Invoice.findById(invoiceId);
 
         if(!invoice){
             return res.status(404).json({message:"Invoice not found"});
@@ -74,15 +76,15 @@ const generateRemainderEmail = async (req, res) => {
         const prompt = `
 You are an expert email writer. Write a polite and professional reminder email to the client for the following invoice details:
 Client Name: ${invoice.billTo?.clientName || 'Client'}
-Due Date: ${invoice.duedate ? new Date(invoice.duedate).toDateString() : 'N/A'}
+Due Date: ${invoice.dueDate ? new Date(invoice.dueDate).toDateString() : 'N/A'}
 Amount Due: ₹${(invoice.total || 0).toFixed(2)}
 Invoice Number: ${invoice.invoiceNumber}
 
 the tone should be polite and professional, reminding the client of the due date and amount, and requesting them to make the payment at their earliest convenience.
        
        `
-        const response = ai.models.generateContent({
-            model: "gemini-2.5-flash",
+        const response = await ai.models.generateContent({
+            model: "gemini-3.5-flash-lite",
             contents: prompt
         });
 
@@ -133,7 +135,7 @@ Example response format:
 ${dataSummary}
       `
         const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
+            model: "gemini-3.5-flash-lite",
             contents: prompt
         });
 
