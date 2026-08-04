@@ -26,7 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/" element={<ProtectedRoute />} >
-              <Route path="dashboard" element={<Dashboard />} />
+              <Route path=" " element={<Dashboard />} />
               <Route path="invoices" element={<AllInvoices />} />
               <Route path="invoices/new" element={<CreateInvoice />} />
               <Route path="invoices/:id" element={<InvoiceDetail />} />
