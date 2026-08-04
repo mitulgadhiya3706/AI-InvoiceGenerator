@@ -1,10 +1,10 @@
 import React from 'react'
-// import Header from '../../components/landing/Headers';
+import Header from '../../components/landing/Headers';
 
 const LandingPage = () => {
   return (
     <div className='bg-[#ffffff] text-gray-600'>
-      {/* <Header /> */}
+      <Header />
       {/* <ProfileDropdown /> */}
     </div>
   )
