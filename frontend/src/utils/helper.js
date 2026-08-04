@@ -1,7 +1,7 @@
 export const formatDate = (date, format = "short") => {
   if (!date) return "—";
   const d = new Date(date);
-  if (isNaN(d.getTime())) return "—";
+  if (isNaN(d.getTime())) return "—";   //Check for invalid date like: new Date("abc")
 
   if (format === "long") {
     return d.toLocaleDateString("en-IN", {
