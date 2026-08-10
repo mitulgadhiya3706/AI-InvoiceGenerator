@@ -108,7 +108,7 @@ const TopBar = () => {
               onClick={logout}
               className="text-[12px] text-[#C8C4B8] border border-[#4A4A42] rounded-[6px] px-4 py-2 hover:bg-[#1C1C18] hover:text-white transition-colors cursor-pointer"
             >
-              sign out
+            Sign out
             </button>
             <div className="w-8 h-8 rounded-full bg-[#252520] border border-[#4A4A42] flex items-center justify-center text-[11px] font-medium text-[#C8C4B8] shrink-0">
               {getInitials(user?.name)}
@@ -120,13 +120,13 @@ const TopBar = () => {
               onClick={() => navigate("/login")}
               className="text-[12px] text-[#C8C4B8] border border-[#4A4A42] rounded-[6px] px-4 py-2 hover:bg-[#1C1C18] hover:text-white transition-colors cursor-pointer"
             >
-              sign in
+              Sign In
             </button>
             <button
               onClick={() => navigate("/signup")}
               className="bg-[#4A7C59] text-white text-[12px] font-medium rounded-[6px] px-4 py-2 hover:bg-[#3D6B4C] transition-colors cursor-pointer"
             >
-              start free
+              Start Free
             </button>
           </>
         )}
