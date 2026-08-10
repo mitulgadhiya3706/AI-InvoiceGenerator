@@ -13,7 +13,7 @@ function StatusBadge(props) {
   if (status === "paid") {
     textColor = "text-[#2A5A38]";
     bgColor = "bg-[#D4EAD8]";
-    borderColor = "#A8D0B0";
+    borderColor = "#A8D0B0"; 
     label = "Paid";
   } else if (status === "pending") {
     textColor = "text-[#7A4A10]";

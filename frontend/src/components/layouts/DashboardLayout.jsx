@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import TopBar from "../ui/TopBar";
 
-function DashboardLayout() {
+const DashboardLayout = ({ children }) => {
   return (
-    <div>DashboardLayout</div>
-  )
-}
+    <div className="flex flex-col h-screen bg-[#F7F5EF] overflow-hidden">
+      <TopBar />
+      <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+        {children}
+      </div>
+    </div>
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;
