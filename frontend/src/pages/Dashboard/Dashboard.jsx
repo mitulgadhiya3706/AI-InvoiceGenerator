@@ -29,13 +29,12 @@ function Dashboard() {
   // const paid = invoices.filter((inv) => inv.status === "paid");
   // const pending = invoices.filter((inv) => inv.status === "unpaid");
   // const revenue = paid.reduce((sum, inv) => sum + (inv.totalAmount || 0), 0);
-  const recentInvoices = invoices.slice(0, 5);
-
+  // const recentInvoices = invoices.slice(0, 5);
 
   const paid = invoices.filter((inv) => String(inv.status).toLowerCase() === "paid");
   const pending = invoices.filter((inv) => String(inv.status).toLowerCase() === "unpaid");
   const revenue = paid.reduce((sum, inv) => sum + (inv.total || 0), 0);
-
+  const recentInvoices = invoices.slice(0, 5);
 
 
   if (loading) {

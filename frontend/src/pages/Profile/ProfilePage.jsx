@@ -45,7 +45,7 @@ const ProfilePage = () => {
 
       {/* Page header */}
       <div className="px-8 pt-8 pb-6">
-        <h1 className="text-xl text-[#8A8778] font-medium">Profile</h1>
+        <h1 className="text-xl text-[#8A8778] font-medium tracking-wide">Profile</h1>
       </div>
 
       <form onSubmit={handleSave}>
