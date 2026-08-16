@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(authRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
-app.use("/api/invoice", invoiceRoutes);
+app.use("/api/invoices", invoiceRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

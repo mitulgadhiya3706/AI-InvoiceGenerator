@@ -1,19 +1,8 @@
 export const formatDate = (date, format = "short") => {
   if (!date) return "—";
+
   const d = new Date(date);
   if (isNaN(d.getTime())) return "—";   //Check for invalid date like: new Date("abc")
-
-  if (format === "long") {
-    return d.toLocaleDateString("en-IN", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-
-  if (format === "input") {
-    return d.toISOString().split("T")[0];
-  }
 
   return d.toLocaleDateString("en-IN", {
     year: "numeric",
@@ -56,3 +45,14 @@ export const getInitials = (name) => {
     .toUpperCase()
     .slice(0, 2);
 };
+
+// Reads the logged-in user's saved info out of the browser's storage.
+export const getStoredUser = () => {
+  try {
+    const raw = localStorage.getItem("user");
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}

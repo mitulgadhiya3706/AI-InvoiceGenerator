@@ -15,11 +15,11 @@ function StatusBadge(props) {
     bgColor = "bg-[#D4EAD8]";
     borderColor = "#A8D0B0"; 
     label = "Paid";
-  } else if (status === "pending") {
+  } else if (status === "unpaid") {
     textColor = "text-[#7A4A10]";
     bgColor = "bg-[#F5EDDA]";
     borderColor = "#D4B880";
-    label = "Pending";
+    label = "Unpaid";
   } else if (status === "overdue") {
     textColor = "text-[#7A2020]";
     bgColor = "bg-[#F5E4E4]";

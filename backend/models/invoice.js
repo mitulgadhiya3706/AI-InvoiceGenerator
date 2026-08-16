@@ -62,8 +62,8 @@ const invoiceSchema = new mongoose.Schema({
     },  
     status:{
         type:String,
-        enum:["Paid","Unpaid"],
-        default:"Unpaid"
+        enum:["paid","unpaid"],
+        default:"unpaid"
     },
     subtotal:Number,
     taxTotal:Number,
