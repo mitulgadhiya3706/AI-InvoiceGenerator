@@ -82,7 +82,7 @@ const AllInvoices = () => {
         </select>
       </div>
 
-      {/* Table */}
+      
       {filteredInvoices.length === 0 ? (
         <p className="text-gray-500">No invoices found.</p>
       ) : (

@@ -1,2 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+
+/* PRINT: By default, window.print() prints the ENTIRE visible page. but only invoice card shoulb be printed. */
+
+@media print {
+  body * {                  /* First hide absolutely everything on the page */
+    visibility: hidden;
+  }
+ 
+  .print-area,
+  .print-area * {           /*Then it make the invoice card (and everything inside it) visible again */
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+ 
