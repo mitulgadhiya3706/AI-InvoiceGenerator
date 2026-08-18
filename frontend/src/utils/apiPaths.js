@@ -20,7 +20,7 @@ export const API_PATHS = {
 
   AI: {
     PARSE_TEXT: `${BASE_URL}/ai/parse-text`,
-    GENERATE_REMINDER: `${BASE_URL}/ai/generate-remainder`,
+    GENERATE_REMINDER: `${BASE_URL}/ai/generate-reminder`,
     DASHBOARD_SUMMARY: `${BASE_URL}/ai/dashboard-summary`,
   },
 };

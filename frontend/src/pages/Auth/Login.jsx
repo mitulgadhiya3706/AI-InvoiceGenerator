@@ -30,7 +30,7 @@ const Login = () => {
     try {
       await login(email, password);
       toast.success("Welcome back!");
-      navigate("/workspace");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Invalid email or password.");
     } finally {

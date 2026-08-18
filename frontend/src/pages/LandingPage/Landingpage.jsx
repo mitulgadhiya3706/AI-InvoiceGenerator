@@ -19,7 +19,7 @@ const LandingPage = () => {
 
       {/* Hero */}
       <section className="flex-1 flex items-center justify-center w-full">
-        {/* Left: headline */}
+        {/* Headline */}
         <div className="flex-1 max-w-xl">
           <div className="inline-flex items-center gap-2 mb-5 px-3 py-1 rounded-full border text-[11px] font-medium uppercase tracking-widest bg-[#E8F0EB] border-[#B8D4C0] text-[#2A5A38]">
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#4A7C59", display: "inline-block" }}></span>
