@@ -15,8 +15,12 @@ const parseInvoiceFromText = async (req, res) => {
     }
 
     try{
+        const today = new Date().toISOString().split("T")[0];   //"2026-08-17"
+
         const prompt = `
 You are an expert invoice extraction AI.
+
+Today's date is ${today}.
 
 Extract structured data from this text and return ONLY valid JSON.
 
@@ -31,8 +35,14 @@ Format:
             "quantity": number,
             "unitPrice": number
         }
-    ]
+    ],
+    "dueDate": "YYYY-MM-DD, or empty string if no due date or payment terms are mentioned",
+    "notes": "string - any payment terms or extra notes mentioned in the text, or empty string if none"
 }
+
+If the text mentions payment terms like "Net 14" or "Due in 30 days", calculate the
+actual due date by adding that many days to today's date (${today}), and return it
+in YYYY-MM-DD format. Also copy the original payment terms phrase into "notes".
 
 Text:
 ${text}
@@ -59,9 +69,8 @@ ${text}
     }
 }
 
-const generateRemainderEmail = async (req, res) => {
+const generateReminderEmail = async (req, res) => {
     const {invoiceId} = req.body;   
-
     if(!invoiceId){
         return res.status(400).json({message:"Please provide invoice ID"});
     }
@@ -81,8 +90,8 @@ Amount Due: ₹${(invoice.total || 0).toFixed(2)}
 Invoice Number: ${invoice.invoiceNumber}
 
 the tone should be polite and professional, reminding the client of the due date and amount, and requesting them to make the payment at their earliest convenience.
-       
        `
+
         const response = await ai.models.generateContent({
             model: "gemini-3.5-flash-lite",
             contents: prompt
@@ -105,8 +114,8 @@ const getDashboardSummary = async (req, res) => {
         }
 
         const totalInvoices = invoices.length;
-        const paidArr = invoices.filter(invoice => invoice.status == "Paid");
-        const unpaidArr = invoices.filter(invoice => invoice.status == "Unpaid");
+        const paidArr = invoices.filter(invoice => invoice.status == "paid");
+        const unpaidArr = invoices.filter(invoice => invoice.status == "unpaid");
         const paidInvoices = paidArr.length;
         const unpaidInvoices = unpaidArr.length;
         const totalAmount = paidArr.reduce((sum, invoice) => sum + (invoice.total || 0), 0);
@@ -153,6 +162,6 @@ ${dataSummary}
 
 module.exports = {
     parseInvoiceFromText,
-    generateRemainderEmail,
+    generateReminderEmail,
     getDashboardSummary
 };
