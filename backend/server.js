@@ -12,8 +12,20 @@ const invoiceRoutes = require("./routes/invoice.routes");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",        
+  process.env.CLIENT_URL,         
+];
+
 app.use(cors({
-    origin: "*",
+    origin: function (origin, callback) {
+        // "!origin" allows tools like Postman/curl through (they send no origin header)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
