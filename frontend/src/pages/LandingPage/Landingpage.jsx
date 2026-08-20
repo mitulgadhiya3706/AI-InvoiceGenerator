@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import TopBar from "../../components/ui/TopBar";
+import TopBar from "../../components/ui/Topbar";
 import { Check } from "lucide-react";
 
 

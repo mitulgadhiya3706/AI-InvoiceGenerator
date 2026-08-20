@@ -1,5 +1,5 @@
 import React from "react";
-import TopBar from "../ui/TopBar";
+import TopBar from "../ui/Topbar";
 
 const DashboardLayout = ({ children }) => {
   return (

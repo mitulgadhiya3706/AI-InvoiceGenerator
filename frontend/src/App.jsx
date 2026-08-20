@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
 
-import LandingPage from "./pages/LandingPage/LandingPage";
+import LandingPage from "./pages/LandingPage/Landingpage";
 import Login from "./pages/Auth/Login";
-import SignUp from "./pages/Auth/SignUp";
+import SignUp from "./pages/Auth/SIgnUp";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CreateInvoice from "./pages/Invoices/CreateInvoice";
 import AllInvoices from "./pages/Invoices/AllInvoices";
