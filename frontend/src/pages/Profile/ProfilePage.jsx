@@ -42,15 +42,12 @@ const ProfilePage = () => {
 
   return (
     <div className="flex-1 min-h-0 overflow-y-auto bg-[#F7F5EF]">
-
-      {/* Page header */}
-      <div className="px-8 pt-8 pb-6">
-        <h1 className="text-xl text-[#8A8778] font-medium tracking-wide">Profile</h1>
+      <div className="max-w-[760px] mx-auto pt-8 pb-6">
+        <h1 className="text-xl text-[#0F0F0D] font-medium tracking-wide">Profile</h1>
       </div>
 
-      <form onSubmit={handleSave}>
-        <div className="px-8 pb-8 grid grid-cols-[1fr_360px] gap-8 items-start">
-
+      <form onSubmit={handleSave} className="px-8 pb-8">
+        <div className="max-w-[760px] mx-auto">
           {/* Form card */}
           <div
             className="bg-[#FDFCF8] rounded-lg overflow-hidden"
@@ -62,7 +59,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="px-6 py-5">
-              {/* Avatar row */}
+              {/* Avatar */}
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#4A7C59] flex items-center justify-center text-sm text-white font-medium shrink-0">
                   {name.trim()
@@ -74,8 +71,6 @@ const ProfilePage = () => {
                   <p className="text-xs text-[#8A8778]">{user.email}</p>
                 </div>
               </div>
-
-              {/* Full name */}
               <div className="mt-4">
                 <label className="text-sm text-[#8A8778]">
                   Full Name
@@ -85,11 +80,9 @@ const ProfilePage = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Jane Smith"
-                  className="w-full rounded-md text-sm text-[#0F0F0D] placeholder-[#9A9888] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
+                  className="w-full rounded-md text-sm text-[#0F0F0D] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
                 />
               </div>
-
-              {/* Email (readonly) */}
               <div className="mt-3">
                 <label className="text-sm text-[#8A8778]">
                   Email
@@ -117,7 +110,7 @@ const ProfilePage = () => {
                     type="text"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    className="w-full rounded-md text-sm text-[#0F0F0D] placeholder-[#9A9888] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
+                    className="w-full rounded-md text-sm text-[#0F0F0D] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -128,7 +121,7 @@ const ProfilePage = () => {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className="w-full rounded-md text-sm text-[#0F0F0D] placeholder-[#9A9888] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
+                    className="w-full rounded-md text-sm text-[#0F0F0D] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -139,7 +132,7 @@ const ProfilePage = () => {
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-md text-sm text-[#0F0F0D] placeholder-[#9A9888] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
+                    className="w-full rounded-md text-sm text-[#0F0F0D] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -151,7 +144,7 @@ const ProfilePage = () => {
                     value={gst}
                     onChange={(e) => setGst(e.target.value)}
                     placeholder="22AAAAA0000A1Z5 (optional)"
-                    className="w-full rounded-md text-sm text-[#0F0F0D] placeholder-[#9A9888] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
+                    className="w-full rounded-md text-sm text-[#0F0F0D] outline-none transition-colors duration-150 px-3 py-2 border border-[#D8D4C8] focus:border-[#4A7C59] focus:outline-none"
                   />
                 </div>
               </div>
@@ -165,14 +158,14 @@ const ProfilePage = () => {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="text-sm text-[#8A8778]"
+                className="rounded-md border border-gray-300 text-xs px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100"
               >
                 Sign out
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="bg-[#4A7C59] text-white text-xs px-4 py-2 rounded-md hover:bg-[#3d6b4a] transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#4A7C59] text-white text-xs px-4 py-2 rounded-md hover:bg-[#3d6b4a] transition-colors duration-150" 
               >
                 {saving ? "Saving…" : "Save changes"}
               </button>

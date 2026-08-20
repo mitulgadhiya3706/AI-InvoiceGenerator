@@ -24,9 +24,9 @@ const userAuth = async (req, res, next) => {
         if(!token){
             res.status(401).send("Please Login!");
         }
-        } else {
-        return res.status(401).json({ message: "No token provided" });
-    
+        else {
+            return res.status(401).json({ message: "No token provided" });
+        }
     }
 }
 

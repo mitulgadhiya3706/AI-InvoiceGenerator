@@ -6,7 +6,6 @@ import { generateInvoiceNumber, formatCurrency, formatDate } from "../../utils/h
 import { useAuth } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
-// A few sample texts the user can click to try the feature instantly
 const SAMPLES = {
   freelance: `Client: Acme Corp
 Email: billing@acme.com
@@ -23,13 +22,15 @@ Email: accounts@studionine.in
 - UI Design, 5 screens, ₹12000 flat
 - Icon set, 20 icons, ₹4000 flat
 
-Net 14`,
+Pay within 14 days.`,
 
   consulting: `Client: GreenPath Ventures
 Email: finance@greenpath.com
 
 - Product roadmap consultation, 3 sessions, ₹8000/session
-- Competitive analysis report, ₹15000 flat`,
+- Competitive analysis report, ₹15000 flat,
+
+Pay within 2 weeks.`
 };
 
 const AIParser = () => {
@@ -37,12 +38,11 @@ const AIParser = () => {
   const { user } = useAuth();
 
   const [text, setText] = useState("");
-  const [parsed, setParsed] = useState(null); // everything the AI extracted: client, items, dueDate, notes
-  const [loading, setLoading] = useState(false); // true while AI is reading the text
+  const [parsed, setParsed] = useState(null); // everything the AI extracted
+  const [loading, setLoading] = useState(false);
   const [creating, setCreating] = useState(false); // true while saving the final invoice
 
-  // Send the raw text to the backend, which asks Gemini to extract
-  // client details, items, due date, and notes from it
+
   const handleParse = async () => {
     if (!text.trim()) {
       toast.error("Please enter some invoice text");
@@ -62,8 +62,7 @@ const AIParser = () => {
     setLoading(false);
   };
 
-  // Save whatever the AI extracted as a real invoice — no editing step,
-  // exactly what came back from the AI is what gets saved
+  // Save whatever the AI extracted as a real invoice
   const handleCreateInvoice = async () => {
     if (!parsed) return;
 
@@ -128,7 +127,7 @@ const AIParser = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows={8}
-            placeholder="Client: Acme Corp&#10;Email: billing@acme.com&#10;&#10;Items:&#10;- Web Development, 10 hours at ₹2000/hr"
+            placeholder="Client: Acme Corp&#10;Email: billing@acme.com&#10;&#10;Items:&#10;- Web Development, 10 hours at ₹2000/hr&#10;&#10;Make payment within next 30 days."
             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
           />
         </div>

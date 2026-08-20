@@ -16,7 +16,7 @@ const AllInvoices = () => {
     const loadInvoices = async () => {
       try {
         const response = await axiosInstance.get(API_PATHS.INVOICES.GET_ALL);
-        setInvoices(response.data);     
+        setInvoices(response.data);
       } catch (error) {
         toast.error("Could not load invoices");
       }
@@ -47,7 +47,7 @@ const AllInvoices = () => {
   }
 
   return (
-    <div className="p-8">
+    <div className="h-full overflow-y-auto p-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl tracking-wide font-semibold text-[#0F0F0D]">
@@ -85,38 +85,36 @@ const AllInvoices = () => {
       {filteredInvoices.length === 0 ? (
         <p className="text-gray-500">No invoices found.</p>
       ) : (
-        <div className="max-h-[550px] overflow-y-auto bg-white rounded shadow">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-sm text-gray-500 border-b">
-                <th className="p-3">Client</th>
-                <th className="p-3">Invoice #</th>
-                <th className="p-3">Date</th>
-                <th className="p-3">Amount</th>
-                <th className="p-3">Status</th>
-                <th className="p-3"></th>
+        <table className="w-full">
+          <thead>
+            <tr className="text-left text-sm text-gray-500 border-b">
+              <th className="p-3">Client</th>
+              <th className="p-3">Invoice #</th>
+              <th className="p-3">Date</th>
+              <th className="p-3">Amount</th>
+              <th className="p-3">Status</th>
+              <th className="p-3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredInvoices.map((invoice) => (
+              <tr key={invoice._id} className="border-b hover:bg-gray-50">
+                <td className="p-3">{invoice.billTo?.clientName || "—"}</td>
+                <td className="p-3">{invoice.invoiceNumber}</td>
+                <td className="p-3">{formatDate(invoice.createdAt)}</td>
+                <td className="p-3">{formatCurrency(invoice.total)}</td>
+                <td className="p-3">
+                  <StatusBadge status={invoice.status} />
+                </td>
+                <td className="p-3">
+                  <Link to={`/invoices/${invoice._id}`} className="text-blue-600 text-sm">
+                    View
+                  </Link>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {filteredInvoices.map((invoice) => (
-                <tr key={invoice._id} className="border-b hover:bg-gray-50">
-                  <td className="p-3">{invoice.billTo?.clientName || "—"}</td>
-                  <td className="p-3">{invoice.invoiceNumber}</td>
-                  <td className="p-3">{formatDate(invoice.createdAt)}</td>
-                  <td className="p-3">{formatCurrency(invoice.total)}</td>
-                  <td className="p-3">
-                    <StatusBadge status={invoice.status} />
-                  </td>
-                  <td className="p-3">
-                    <Link to={`/invoices/${invoice._id}`} className="text-blue-600 text-sm">
-                      View
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
